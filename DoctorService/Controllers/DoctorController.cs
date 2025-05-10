@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DoctorService.Controllers
 {
-   
+   // the ID i am searching is the USERID !!!!
     [Route("api/[controller]")]
     [ApiController]
     public class DoctorController : ControllerBase
@@ -27,14 +27,22 @@ namespace DoctorService.Controllers
         public async Task<IActionResult> Create([FromBody] AddDoctorDTO command)
         {
             var doctorId = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetById), new { id = doctorId }, null);
+            return CreatedAtAction(nameof(GetDoctorByUserId), new { userId = doctorId }, null);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetDoctorByUserId(Guid userId)
         {
-            // TODO: Implement GetDoctorByIdQuery
-            return Ok();
+            var doctorQuery = new GetDoctorByUserIdQuery(userId);
+
+            var doctor = await _mediator.Send(doctorQuery);
+
+            if (doctor == null)
+            {
+                return NotFound("Doctor not found.");
+            }
+
+            return Ok(doctor);
         }
 
         [HttpDelete("{id}")]
@@ -51,7 +59,7 @@ namespace DoctorService.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateDoctorDTO command)
         {
-            if (id != command.Id)
+            if (id != command.UserId)
                 return BadRequest("Doctor ID in URL does not match body");
 
             var result = await _mediator.Send(command);

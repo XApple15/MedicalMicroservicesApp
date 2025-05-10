@@ -17,7 +17,7 @@ namespace DoctorService.Application.Commands.Schedule
         public async Task<bool> Handle(AddScheduleDTO request, CancellationToken cancellationToken)
         {
             var doctor = await _dbContext.Doctors
-                .FirstOrDefaultAsync(d => d.Id == request.DoctorId, cancellationToken);
+                .FirstOrDefaultAsync(d => d.UserId == request.UserId, cancellationToken);
 
             if (doctor == null)
             {
@@ -26,7 +26,7 @@ namespace DoctorService.Application.Commands.Schedule
 
             var scheduleEntry = new ScheduleEntry
             {
-                DoctorId = doctor.Id,
+                DoctorId = doctor.UserId,
                 Day = request.Day,
                 StartTime = request.StartTime,
                 EndTime = request.EndTime

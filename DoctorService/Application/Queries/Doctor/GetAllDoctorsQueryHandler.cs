@@ -18,7 +18,7 @@ namespace DoctorService.Application.Queries.Doctor
         public async Task<List<DoctorDTO>> Handle(GetAllDoctorsQuery request, CancellationToken cancellationToken)
         {
             var doctors = await _context.Doctors
-                .Include(d => d.Schedule) // Optionally, include schedules for each doctor
+                .Include(d => d.Schedule) 
                 .ToListAsync(cancellationToken);
 
             var doctorDtos = doctors.Select(d => new DoctorDTO
@@ -29,7 +29,7 @@ namespace DoctorService.Application.Queries.Doctor
                 CvPath = d.CvPath,
                 PhotoUrl = d.PhotoUrl,
                 Specialties = d.Specialties,
-                Schedule = d.Schedule.Select(s => new ScheduleEntryDto
+                Schedule = d.Schedule.Select(s => new ScheduleEntryDTO
                 {
                     Day = s.Day,
                     StartTime = s.StartTime,

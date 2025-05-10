@@ -4,10 +4,10 @@ namespace DoctorService.Application.Commands.Doctor
 {
     public class DeleteDoctorDTO: IRequest<bool>
     {
-        public Guid DoctorId { get; set; }
-        public DeleteDoctorDTO(Guid doctorId)
+        public Guid UserId { get; set; }
+        public DeleteDoctorDTO(Guid userId)
         {
-            DoctorId = doctorId;
+            UserId = userId;
         }
     }
     

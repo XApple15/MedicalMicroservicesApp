@@ -13,6 +13,6 @@ namespace DoctorService.Models.DTO.Doctor
         public string? CvPath { get; set; }
         public string? PhotoUrl { get; set; }
 
-        public List<ScheduleEntryDto> Schedule { get; set; }
+        public List<ScheduleEntryDTO> Schedule { get; set; }
     }
 }

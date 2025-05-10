@@ -18,7 +18,7 @@ namespace DoctorService.Application.Commands.Doctor
         {
             var doctor = await _context.Doctors
                 .Include(d => d.Schedule) 
-                .FirstOrDefaultAsync(d => d.Id == request.DoctorId, cancellationToken);
+                .FirstOrDefaultAsync(d => d.Id == request.UserId, cancellationToken);
 
             if (doctor == null)
                 return false;

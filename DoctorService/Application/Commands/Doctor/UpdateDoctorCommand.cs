@@ -19,7 +19,7 @@ namespace DoctorService.Application.Commands.Doctor
         {
             var doctor = await _context.Doctors
                 .Include(d => d.Schedule)
-                .FirstOrDefaultAsync(d => d.Id == request.Id, cancellationToken);
+                .FirstOrDefaultAsync(d => d.UserId == request.UserId, cancellationToken);
 
             if (doctor == null)
                 return false;
@@ -37,7 +37,7 @@ namespace DoctorService.Application.Commands.Doctor
                 Day = (DayOfWeek)entry.Day,
                 StartTime = entry.StartTime,
                 EndTime = entry.EndTime,
-                DoctorId = doctor.Id
+                DoctorId = doctor.UserId
             }).ToList();
 
             await _context.SaveChangesAsync(cancellationToken);

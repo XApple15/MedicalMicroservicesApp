@@ -18,6 +18,7 @@ namespace DoctorService.Application.Commands.Doctor
             var doctor = new Models.Doctor
             {
                 Id = Guid.NewGuid(),
+                UserId = request.UserId,
                 FullName = request.FullName,
                 Specialties = request.Specialties
             };
@@ -25,7 +26,7 @@ namespace DoctorService.Application.Commands.Doctor
             _context.Doctors.Add(doctor);
             await _context.SaveChangesAsync(cancellationToken);
 
-            return doctor.Id;
+            return doctor.UserId;
         }
     }
 }

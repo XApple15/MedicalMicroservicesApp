@@ -1,6 +1,6 @@
 ﻿namespace DoctorService.Application.Commands.Schedule
 {
-    public class ScheduleEntryDto
+    public class ScheduleEntryDTO
     {
         public DayOfWeek Day { get; set; }
         public TimeSpan StartTime { get; set; }
