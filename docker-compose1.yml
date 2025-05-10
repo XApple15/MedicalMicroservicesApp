@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  gateway:
+    build:
+      context: ./ApiGateway
+    ports:
+      - "5000:80"
+    depends_on:
+      - authservice
+     
+
+  authservice:
+    build:
+      context: ./AuthService
+    ports:
+      - "5001:80"
+
+  

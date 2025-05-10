@@ -1,0 +1,39 @@
+services:
+  authservice:
+    image: ${DOCKER_REGISTRY-}authservice
+    build:
+      context: .
+      dockerfile: AuthService/Dockerfile
+    ports:
+    - "5269:80"
+
+  apigateway:
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    ports:
+    - "5000:80"
+
+
+  doctorservice:
+    image: ${DOCKER_REGISTRY-}doctorservice
+    build:
+      context: .
+      dockerfile: DoctorService/Dockerfile
+    ports:
+    - "5008:80"
+
+  pacientservice:
+    image: ${DOCKER_REGISTRY-}pacientservice
+    build:
+      context: .
+      dockerfile: PacientService/Dockerfile
+
+
+  consultationservice:
+    image: ${DOCKER_REGISTRY-}consultationservice
+    build:
+      context: .
+      dockerfile: ConsultationService/Dockerfile
+
