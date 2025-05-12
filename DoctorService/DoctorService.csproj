@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Application\Queries\Schedule\" />
+    <Folder Include="FileStorage\" />
   </ItemGroup>
 
 </Project>

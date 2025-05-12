@@ -18,8 +18,8 @@ namespace DoctorService.Application.Queries.Doctor
         public async Task<DoctorDTO> Handle(GetDoctorByUserIdQuery request, CancellationToken cancellationToken)
         {
             var doctor = await _dbContext.Doctors
-                .Where(d => d.UserId == request.UserId) // Searching by UserId
-                .Include(d => d.Schedule)  // Include the schedule if needed
+                .Where(d => d.UserId == request.UserId) 
+                .Include(d => d.Schedule) 
                 .FirstOrDefaultAsync(cancellationToken);
 
             if (doctor == null)
@@ -30,6 +30,7 @@ namespace DoctorService.Application.Queries.Doctor
             return new DoctorDTO
             {
                 Id = doctor.Id,
+                UserId = doctor.UserId,
                 FullName = doctor.FullName,
                 CvPath = doctor.CvPath,
                 PhotoUrl = doctor.PhotoUrl,

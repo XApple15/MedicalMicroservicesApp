@@ -1,4 +1,4 @@
-namespace PacientService
+namespace ExportService
 {
     public class WeatherForecast
     {

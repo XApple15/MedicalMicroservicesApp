@@ -8,7 +8,8 @@
         "apigateway": "StartDebugging",
         "doctorservice": "StartDebugging",
         "pacientservice": "StartDebugging",
-        "consultationservice": "StartDebugging"
+        "consultationservice": "StartDebugging",
+        "appointmentservice": "StartDebugging"
       }
     }
   }

@@ -1,0 +1,6 @@
+@ExportService_HostAddress = http://localhost:5258
+
+GET {{ExportService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

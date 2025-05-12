@@ -29,11 +29,21 @@ services:
     build:
       context: .
       dockerfile: PacientService/Dockerfile
-
+    ports:
+    - "5100:80"
 
   consultationservice:
     image: ${DOCKER_REGISTRY-}consultationservice
     build:
       context: .
       dockerfile: ConsultationService/Dockerfile
+
+
+  appointmentservice:
+    image: ${DOCKER_REGISTRY-}appointmentservice
+    build:
+      context: .
+      dockerfile: AppointmentService/Dockerfile
+    ports:
+    - "5260:80"
 

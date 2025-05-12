@@ -1,7 +1,9 @@
 using DoctorService.Application.Commands.Doctor;
 using DoctorService.Application.Queries.Doctor;
+using DoctorService.Application.Service;
 using DoctorService.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,10 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(DeleteDoctorCommand).Assembly));
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(GetAllDoctorsQuery).Assembly));
+builder.Services.AddMediatR(cfg =>
+        cfg.RegisterServicesFromAssembly(typeof(GetAllDoctorsGroupedBySpecialityQuery).Assembly));
 
+builder.Services.AddScoped<IFileService, FileService>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -32,6 +37,13 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 });
 
 var app = builder.Build();
+app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "FileStorage")),
+    RequestPath = "/files"
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -1,0 +1,6 @@
+@AsistentService_HostAddress = http://localhost:5283
+
+GET {{AsistentService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,4 +1,4 @@
-namespace DoctorService
+namespace AsistentService
 {
     public class WeatherForecast
     {
